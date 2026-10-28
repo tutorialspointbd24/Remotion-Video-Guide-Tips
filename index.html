@@ -1,0 +1,2323 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remotion Video Guide Tips</title>
+<style>
+/* ============================================================
+   CSS RESET & VARIABLES
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-primary: #0f1117;
+  --bg-secondary: #161822;
+  --bg-tertiary: #1e2030;
+  --bg-card: #1a1d2b;
+  --bg-card-hover: #232738;
+  --bg-code: #12141e;
+  --bg-input: #1e2030;
+  --text-primary: #e8eaf0;
+  --text-secondary: #9ba1b7;
+  --text-muted: #6b7280;
+  --accent-primary: #6366f1;
+  --accent-secondary: #8b5cf6;
+  --accent-green: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  --accent-cyan: #06b6d4;
+  --border-color: #2a2e3f;
+  --border-light: #353a50;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.5);
+  --font-sans: 'Hind Siliguri', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  --transition: 0.2s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover {
+  color: var(--accent-secondary);
+}
+a:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header {
+  background: linear-gradient(135deg, #1a1d2b 0%, #161822 50%, #1e2030 100%);
+  border-bottom: 1px solid var(--border-color);
+  padding: 2rem 1.5rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(99,102,241,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -10%;
+  width: 40%;
+  height: 100%;
+  background: radial-gradient(ellipse, rgba(139,92,246,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.header h1 {
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #e8eaf0, #a5b4fc, #c4b5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header .subtitle {
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin-bottom: 1.25rem;
+  line-height: 1.8;
+}
+
+.feature-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.feature-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.85rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 100px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.feature-label::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.header-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+  line-height: 1.4;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: #fff;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #5558e6, #7c4fe6);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(99,102,241,0.35);
+  color: #fff;
+}
+.btn-secondary {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+.btn-secondary:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-light);
+  transform: translateY(-1px);
+  color: var(--text-primary);
+}
+.btn-sm {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  border-radius: var(--radius-sm);
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.layout {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* Sidebar / TOC */
+.toc-sidebar {
+  position: sticky;
+  top: 1.5rem;
+  width: 240px;
+  flex-shrink: 0;
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
+  padding: 1.25rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+.toc-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+.toc-sidebar::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.toc-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+.toc-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toc-nav a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  border-left: 2px solid transparent;
+  transition: all var(--transition);
+  line-height: 1.4;
+}
+.toc-nav a:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+.toc-nav a.active {
+  background: rgba(99,102,241,0.1);
+  color: var(--accent-primary);
+  border-left-color: var(--accent-primary);
+  font-weight: 600;
+}
+
+/* Mobile TOC toggle */
+.toc-toggle {
+  display: none;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  justify-content: space-between;
+  align-items: center;
+}
+.toc-toggle:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+.toc-toggle .arrow {
+  transition: transform var(--transition);
+  font-size: 0.7rem;
+}
+.toc-toggle[aria-expanded="true"] .arrow {
+  transform: rotate(180deg);
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  min-width: 0;
+  padding: 1.5rem 0 4rem;
+}
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+.section {
+  margin-bottom: 2.5rem;
+  scroll-margin-top: 1.5rem;
+  animation: fadeIn 0.4s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.section-title .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(99,102,241,0.15);
+  color: var(--accent-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.section-desc {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  transition: border-color var(--transition);
+}
+.card:hover {
+  border-color: var(--border-light);
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+.card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.3rem;
+}
+.card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
+}
+.card p:last-child {
+  margin-bottom: 0;
+}
+.card .card-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Repo link highlight */
+.repo-link-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1rem;
+  background: rgba(99,102,241,0.08);
+  border: 1px solid rgba(99,102,241,0.3);
+  border-radius: var(--radius-md);
+  margin: 0.75rem 0;
+}
+.repo-link-box .repo-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.repo-link-box a {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  word-break: break-all;
+  font-weight: 600;
+}
+
+/* ============================================================
+   CODE BLOCKS
+   ============================================================ */
+.code-block-wrapper {
+  position: relative;
+  margin: 0.75rem 0;
+}
+.code-block {
+  background: var(--bg-code);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1rem;
+  padding-right: 4.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: #c9d1e0;
+  overflow-x: auto;
+  white-space: pre;
+  tab-size: 2;
+}
+.code-block .comment {
+  color: #6b7280;
+}
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.3rem 0.65rem;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition);
+  z-index: 2;
+}
+.copy-btn:hover {
+  background: var(--accent-primary);
+  color: #fff;
+  border-color: var(--accent-primary);
+}
+.copy-btn:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+.copy-btn.copied {
+  background: var(--accent-green);
+  color: #fff;
+  border-color: var(--accent-green);
+}
+
+/* ============================================================
+   CHECKLIST
+   ============================================================ */
+.checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.7rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition);
+  user-select: none;
+}
+.checklist-item:hover {
+  border-color: var(--border-light);
+  background: var(--bg-card-hover);
+}
+.checklist-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-light);
+  border-radius: 5px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+  position: relative;
+  transition: all var(--transition);
+  background: transparent;
+}
+.checklist-item input[type="checkbox"]:checked {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+.checklist-item input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+.checklist-item input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+.checklist-item span {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.checklist-item input:checked + span {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+/* ============================================================
+   PROMPT PANEL
+   ============================================================ */
+.prompt-panel {
+  background: var(--bg-code);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 0.75rem;
+}
+.prompt-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.prompt-panel-header .prompt-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.prompt-content {
+  padding: 1.25rem 1.5rem;
+  font-size: 0.85rem;
+  line-height: 1.85;
+  color: #c9d1e0;
+  max-height: 640px;
+  overflow-y: auto;
+  white-space: normal;
+  word-wrap: break-word;
+  font-family: var(--font-sans);
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+.prompt-content::-webkit-scrollbar {
+  width: 6px;
+}
+.prompt-content::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+.prompt-content h1,
+.prompt-content h2,
+.prompt-content h3,
+.prompt-content h4 {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin: 1.1rem 0 0.4rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.prompt-content h1 {
+  font-size: 1.05rem;
+  color: var(--accent-secondary);
+}
+.prompt-content h2 {
+  color: #c4b5fd;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.25rem;
+}
+.prompt-content h1:first-child,
+.prompt-content h2:first-child,
+.prompt-content h3:first-child,
+.prompt-content h4:first-child {
+  margin-top: 0;
+}
+.prompt-content ul,
+.prompt-content ol {
+  margin: 0.4rem 0 0.6rem 1.3rem;
+}
+.prompt-content li {
+  margin-bottom: 0.2rem;
+}
+.prompt-content li ul,
+.prompt-content li ol {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.prompt-content code {
+  background: rgba(99,102,241,0.15);
+  color: #a5b4fc;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+.prompt-content pre {
+  background: rgba(0,0,0,0.35);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+  margin: 0.5rem 0;
+  overflow-x: auto;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+.prompt-content pre code {
+  background: none;
+  color: #b8c5e0;
+  padding: 0;
+  font-size: 0.8rem;
+}
+.prompt-content strong {
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   ACCORDION (FAQ)
+   ============================================================ */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.accordion-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+.accordion-item:hover {
+  border-color: var(--border-light);
+}
+.accordion-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.9rem 1.1rem;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  gap: 1rem;
+  line-height: 1.5;
+  transition: background var(--transition);
+}
+.accordion-trigger:hover {
+  background: var(--bg-card-hover);
+}
+.accordion-trigger:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: -2px;
+}
+.accordion-trigger .icon {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  transition: transform var(--transition);
+  flex-shrink: 0;
+}
+.accordion-trigger[aria-expanded="true"] .icon {
+  transform: rotate(180deg);
+}
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 1.1rem;
+}
+.accordion-content.open {
+  max-height: 500px;
+  padding: 0 1.1rem 1rem;
+}
+.accordion-content p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin: 0;
+}
+.accordion-content code {
+  background: rgba(99,102,241,0.15);
+  color: #a5b4fc;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+/* ============================================================
+   OUTPUT MODE CARDS
+   ============================================================ */
+.mode-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.mode-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  transition: all var(--transition);
+}
+.mode-card:hover {
+  border-color: var(--border-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.mode-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.mode-card h3 .badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.mode-card:first-child h3 .badge {
+  background: rgba(16,185,129,0.15);
+  color: var(--accent-green);
+}
+.mode-card:last-child h3 .badge {
+  background: rgba(245,158,11,0.15);
+  color: var(--accent-amber);
+}
+.mode-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.mode-card ul li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding-left: 1.1rem;
+  position: relative;
+  line-height: 1.6;
+}
+.mode-card ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent-primary);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* ============================================================
+   REPO INPUT
+   ============================================================ */
+.repo-input-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  flex-wrap: wrap;
+}
+.repo-input-group input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.55rem 0.85rem;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  transition: border-color var(--transition);
+}
+.repo-input-group input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+}
+.repo-input-group input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   STEPS
+   ============================================================ */
+.step-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: rgba(99,102,241,0.15);
+  color: var(--accent-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   BACK TO TOP
+   ============================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  background: var(--accent-secondary);
+  transform: translateY(-2px);
+}
+.back-to-top:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--accent-green);
+  color: #fff;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 200;
+  white-space: nowrap;
+}
+.toast.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================================
+   UTILITY
+   ============================================================ */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mb-0 { margin-bottom: 0; }
+.text-muted { color: var(--text-muted); }
+.text-sm { font-size: 0.82rem; }
+
+/* ============================================================
+   RESPONSIVE — TABLET
+   ============================================================ */
+@media (max-width: 960px) {
+  .layout {
+    flex-direction: column;
+    padding: 0 1rem;
+    gap: 0;
+  }
+  .toc-sidebar {
+    position: static;
+    width: 100%;
+    max-height: none;
+    padding: 1rem 0 0.5rem;
+    overflow: visible;
+  }
+  .toc-sidebar.collapsed .toc-nav {
+    display: none;
+  }
+  .toc-toggle {
+    display: flex;
+  }
+  .toc-title {
+    display: none;
+  }
+  .main-content {
+    padding-top: 0.5rem;
+  }
+  .mode-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+   ============================================================ */
+@media (max-width: 600px) {
+  .header {
+    padding: 1.5rem 1rem 2rem;
+  }
+  .header-buttons {
+    flex-direction: column;
+  }
+  .header-buttons .btn {
+    width: 100%;
+  }
+  .card {
+    padding: 1rem 1.1rem;
+  }
+  .section-title {
+    font-size: 1.15rem;
+  }
+  .prompt-content {
+    padding: 1rem 1.1rem;
+    font-size: 0.82rem;
+  }
+  .code-block {
+    font-size: 0.78rem;
+    padding: 0.8rem 3.8rem 0.8rem 0.85rem;
+  }
+  .copy-btn {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.5rem;
+  }
+  .back-to-top {
+    bottom: 1rem;
+    right: 1rem;
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+@media print {
+  .toc-sidebar,
+  .back-to-top,
+  .toast,
+  .copy-btn,
+  .toc-toggle,
+  .header-buttons {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .card, .prompt-panel, .accordion-item, .mode-card {
+    border: 1px solid #ccc;
+    break-inside: avoid;
+  }
+  .prompt-content {
+    max-height: none;
+    overflow: visible;
+  }
+  .accordion-content {
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 1.1rem 1rem !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="header">
+  <div class="header-inner">
+    <h1>Remotion Video Guide Tips</h1>
+    <p class="subtitle">
+      Remotion Setup, Claude AI Instructions এবং SRT থেকে Professional Motion Graphics ভিডিও তৈরির সম্পূর্ণ গাইড।
+    </p>
+    <div class="feature-labels">
+      <span class="feature-label">Remotion Setup</span>
+      <span class="feature-label">Claude AI Workflow</span>
+      <span class="feature-label">SRT-Based Animation</span>
+      <span class="feature-label">Bengali Typography</span>
+      <span class="feature-label">Preview &amp; Render</span>
+    </div>
+    <div class="header-buttons">
+      <button class="btn btn-primary" id="headerCopyClaude" type="button">
+        📋 Claude Instructions কপি করুন
+      </button>
+      <a class="btn btn-secondary" href="#setup-guide">
+        🛠️ Setup Guide দেখুন
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     LAYOUT
+     ============================================================ -->
+<div class="layout">
+
+  <!-- Sidebar / TOC -->
+  <aside class="toc-sidebar collapsed" id="tocSidebar">
+    <button class="toc-toggle" id="tocToggle" aria-expanded="false" aria-controls="tocNav" type="button">
+      <span>📑 সূচিপত্র</span>
+      <span class="arrow">▼</span>
+    </button>
+    <div class="toc-title">সূচিপত্র</div>
+    <nav class="toc-nav" id="tocNav" aria-label="Table of Contents">
+      <a href="#overview">Overview</a>
+      <a href="#requirements">Requirements</a>
+      <a href="#setup-guide">Remotion Setup</a>
+      <a href="#claude-prompt">Claude AI Instructions</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#style-library">Style Library</a>
+      <a href="#bengali-rules">Bengali Text Rules</a>
+      <a href="#timing-assets">Timing &amp; Assets</a>
+      <a href="#sound-design">Sound Design</a>
+      <a href="#output-modes">Output Modes</a>
+      <a href="#troubleshooting">Troubleshooting</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- ============================================================
+         1. OVERVIEW
+         ============================================================ -->
+    <section class="section" id="overview">
+      <h2 class="section-title">
+        <span class="num">১</span> Overview
+      </h2>
+      <p class="section-desc">
+        এই Workflow-এ আপনি SRT ফাইল থেকে শুরু করে সম্পূর্ণ Professional Motion Graphics ভিডিও তৈরি করতে পারবেন। নিচের ধাপগুলো অনুসরণ করুন:
+      </p>
+
+      <div class="card">
+        <ol style="margin-left: 1.2rem; color: var(--text-secondary); font-size: 0.9rem; line-height: 2;">
+          <li>Node.js LTS ও Git Install করতে হবে।</li>
+          <li>Remotion Motion Graphics Skill-এর Official GitHub Repository খুঁজে বের করতে হবে।</li>
+          <li>Repository-এর README অনুযায়ী Skill Install করতে হবে।</li>
+          <li>Claude Code-এ Skill Available আছে কি না যাচাই করতে হবে।</li>
+          <li>Voice-over SRT ফাইল দিতে হবে।</li>
+          <li>Claude SRT বিশ্লেষণ করে Color Scheme সম্পর্কে সর্বোচ্চ একটি প্রশ্ন করবে।</li>
+          <li>নির্বাচিত রং অনুযায়ী Remotion Project তৈরি করবে।</li>
+          <li>Remotion Studio-তে Preview ও Still Frame যাচাই করবে।</li>
+          <li>ব্যবহারকারী স্পষ্টভাবে <code>রেন্ডার করো</code> বললেই Full MP4 Render করবে।</li>
+        </ol>
+      </div>
+
+      <div class="card" style="border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.05);">
+        <p style="color: var(--accent-amber); font-weight: 600; margin-bottom: 0.3rem;">⚠️ গুরুত্বপূর্ণ</p>
+        <p class="mb-0">
+          এই HTML ওয়েবপেজটি একটি <strong>Guide এবং Prompt Library</strong>। এটি নিজে Remotion Install, Claude Code Execute বা Video Render করবে না।
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2. REQUIREMENTS CHECKLIST
+         ============================================================ -->
+    <section class="section" id="requirements">
+      <h2 class="section-title">
+        <span class="num">২</span> Requirements Checklist
+      </h2>
+      <p class="section-desc">
+        নিচের Checklist ব্যবহার করে আপনার Setup প্রস্তুত আছে কি না যাচাই করুন। আপনার Progress স্বয়ংক্রিয়ভাবে সংরক্ষিত হবে।
+      </p>
+
+      <ul class="checklist" id="checklist">
+        <li class="checklist-item">
+          <input type="checkbox" id="req-node" data-key="req-node">
+          <span for="req-node">Node.js LTS Installed</span>
+        </li>
+        <li class="checklist-item">
+          <input type="checkbox" id="req-git" data-key="req-git">
+          <span for="req-git">Git Installed</span>
+        </li>
+        <li class="checklist-item">
+          <input type="checkbox" id="req-claude" data-key="req-claude">
+          <span for="req-claude">Claude Code Installed</span>
+        </li>
+        <li class="checklist-item">
+          <input type="checkbox" id="req-project" data-key="req-project">
+          <span for="req-project">Remotion Project Ready</span>
+        </li>
+        <li class="checklist-item">
+          <input type="checkbox" id="req-skill" data-key="req-skill">
+          <span for="req-skill">Remotion Motion Graphics Skill Installed</span>
+        </li>
+        <li class="checklist-item">
+          <input type="checkbox" id="req-srt" data-key="req-srt">
+          <span for="req-srt">Voice-over SRT Ready</span>
+        </li>
+        <li class="checklist-item">
+          <input type="checkbox" id="req-logo" data-key="req-logo">
+          <span for="req-logo">Optional: Logo and Assets Ready</span>
+        </li>
+        <li class="checklist-item">
+          <input type="checkbox" id="req-audio" data-key="req-audio">
+          <span for="req-audio">Optional: public/voiceover.mp3 Ready</span>
+        </li>
+        <li class="checklist-item">
+          <input type="checkbox" id="req-sfx" data-key="req-sfx">
+          <span for="req-sfx">Optional: SFX Files Ready</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============================================================
+         3. REMOTION SETUP GUIDE
+         ============================================================ -->
+    <section class="section" id="setup-guide">
+      <h2 class="section-title">
+        <span class="num">৩</span> Remotion Setup Guide
+      </h2>
+      <p class="section-desc">
+        প্রতিটি ধাপ অনুসরণ করুন। প্রতিটি Command Block-এ Copy Button রয়েছে।
+      </p>
+
+      <!-- Step 1 -->
+      <div class="card">
+        <div class="card-header">
+          <h3><span class="step-indicator">১</span> Install Node.js</h3>
+        </div>
+        <p>
+          Official Website: <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">https://nodejs.org/</a>
+        </p>
+        <p>Node.js LTS Install করার পর Terminal বা Command Prompt খুলে যাচাই করুন:</p>
+        <div class="code-block-wrapper">
+          <pre class="code-block" id="code-node">node -v
+npm -v</pre>
+          <button class="copy-btn" data-copy-target="code-node" type="button">Copy</button>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="card">
+        <div class="card-header">
+          <h3><span class="step-indicator">২</span> Install Git</h3>
+        </div>
+        <p>
+          Official Website: <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">https://git-scm.com/</a>
+        </p>
+        <p>Install যাচাই:</p>
+        <div class="code-block-wrapper">
+          <pre class="code-block" id="code-git">git --version</pre>
+          <button class="copy-btn" data-copy-target="code-git" type="button">Copy</button>
+        </div>
+      </div>
+
+      <!-- Step 3 — Official Skill Repository (UPDATED WITH USER LINK) -->
+      <div class="card" style="border-color: rgba(16,185,129,0.35); background: rgba(16,185,129,0.04);">
+        <div class="card-header">
+          <h3><span class="step-indicator">৩</span> Get the Official Remotion Motion Graphics Skill</h3>
+        </div>
+        <p>
+          Skill-এর Official GitHub Repository নিচে দেওয়া হলো। README পড়ে Installation Command ও Skill Path অনুসরণ করুন।
+        </p>
+
+        <div class="repo-link-box">
+          <span class="repo-icon">🔗</span>
+          <a href="https://github.com/haidrrrry/claude-remotion-skill" target="_blank" rel="noopener noreferrer">
+            https://github.com/haidrrrry/claude-remotion-skill
+          </a>
+        </div>
+
+        <p class="mt-1">এই Repository URL দিয়ে সরাসরি Clone করতে পারেন:</p>
+        <div class="code-block-wrapper">
+          <pre class="code-block" id="code-clone">git clone https://github.com/haidrrrry/claude-remotion-skill.git</pre>
+          <button class="copy-btn" data-copy-target="code-clone" type="button">Copy</button>
+        </div>
+
+        <p class="card-note mt-1">
+          Clone করার পর Repository Folder-এ ঢুকে README.md পড়ুন। README-তে দেওয়া Installation Instruction অনুযায়ী Skill Install করুন।
+        </p>
+
+        <p class="mt-2">চাইলে নিচের Field-এ কাস্টম Repository URL বসিয়ে কমান্ড তৈরি করতে পারেন:</p>
+        <div class="repo-input-group">
+          <input type="text" id="repoUrlInput" placeholder="https://github.com/username/repo-name" aria-label="Custom Repository URL">
+          <button class="btn btn-sm btn-secondary" id="repoUrlInsert" type="button">Insert</button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="card">
+        <div class="card-header">
+          <h3><span class="step-indicator">৪</span> Open the Project</h3>
+        </div>
+        <p>ব্যাখ্যা: <code>package.json</code> থাকা Project Directory-তে Terminal খুলুন।</p>
+        <div class="code-block-wrapper">
+          <pre class="code-block" id="code-cd">cd &lt;YOUR_PROJECT_FOLDER&gt;</pre>
+          <button class="copy-btn" data-copy-target="code-cd" type="button">Copy</button>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="card">
+        <div class="card-header">
+          <h3><span class="step-indicator">৫</span> Install Dependencies</h3>
+        </div>
+        <div class="code-block-wrapper">
+          <pre class="code-block" id="code-install">npm install</pre>
+          <button class="copy-btn" data-copy-target="code-install" type="button">Copy</button>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="card">
+        <div class="card-header">
+          <h3><span class="step-indicator">৬</span> Launch Remotion Studio</h3>
+        </div>
+        <p>ব্যাখ্যা: Remotion Studio খুলে Project-এর Composition Preview করুন। Project-specific Entry File বা Script আলাদা হলে README অনুসরণ করুন।</p>
+        <div class="code-block-wrapper">
+          <pre class="code-block" id="code-studio">npx remotion studio</pre>
+          <button class="copy-btn" data-copy-target="code-studio" type="button">Copy</button>
+        </div>
+      </div>
+
+      <!-- Step 7 -->
+      <div class="card">
+        <div class="card-header">
+          <h3><span class="step-indicator">৭</span> Verify Installation</h3>
+        </div>
+        <ul style="margin-left: 1.2rem; color: var(--text-secondary); font-size: 0.88rem; line-height: 2;">
+          <li>Claude Code Skill শনাক্ত করতে পারছে কি না যাচাই করুন।</li>
+          <li>Remotion Studio চালু হচ্ছে কি না যাচাই করুন।</li>
+          <li>Composition দৃশ্যমান কি না যাচাই করুন।</li>
+          <li>Font ও Assets ঠিকমতো Load হচ্ছে কি না যাচাই করুন।</li>
+        </ul>
+        <p class="mt-1">
+          Official Remotion Documentation: <a href="https://www.remotion.dev/docs/" target="_blank" rel="noopener noreferrer">https://www.remotion.dev/docs/</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. CLAUDE AI INSTRUCTIONS
+         ============================================================ -->
+    <section class="section" id="claude-prompt">
+      <h2 class="section-title">
+        <span class="num">৪</span> Claude AI Instructions — Complete Prompt Library
+      </h2>
+      <p class="section-desc">
+        নিচের সম্পূর্ণ Prompt কপি করে Claude Code-এ পাঠান। <strong>Copy Full Prompt</strong> Button ক্লিক করলে সম্পূর্ণ Prompt কপি হবে।
+      </p>
+
+      <div class="prompt-panel">
+        <div class="prompt-panel-header">
+          <span class="prompt-label">CLAUDE PROMPT</span>
+          <button class="btn btn-sm btn-primary" id="copyFullPromptBtn" type="button">
+            📋 Copy Full Prompt
+          </button>
+        </div>
+        <div class="prompt-content" id="claudePromptContent">
+<h1>১. মূল উদ্দেশ্য</h1>
+<p>ইউজারের দেওয়া Voice-over SRT থেকে প্রফেশনাল Motion Graphics ভিডিও তৈরি করবে। ইনস্টল করা <strong>Remotion Motion Graphics Skill</strong> ব্যবহার করে নিজে কোড লিখবে, গুরুত্বপূর্ণ Still Frame রেন্ডার করে যাচাই করবে এবং নির্ধারিত Output Mode অনুযায়ী ডেলিভারি দেবে। ভিডিওর বিষয়, গঠন, টোন ও ভিজ্যুয়াল পরিকল্পনা প্রতিবার SRT থেকে নিজে বুঝে নেবে।</p>
+
+<h2>২. ইউজারের ইনপুট</h2>
+<ul>
+<li><strong>SRT ফাইল বাধ্যতামূলক।</strong></li>
+<li>ঐচ্ছিক: Logo, Image, Video, অন্যান্য Asset ও Reference Image।</li>
+<li>ঐচ্ছিক: ভিডিওর সাইজ, Aspect Ratio, Frame Rate অথবা বিশেষ নির্দেশনা (যেমন: “রিল”, “রং হবে নীল ও সাদা”)।</li>
+<li>ঐচ্ছিক: Voice-over MP3 ও SFX ফাইল।</li>
+</ul>
+
+<h2>৩. ডিফল্ট সেটিংস</h2>
+<p>ইউজার অন্য কিছু না বললে কোনো প্রশ্ন না করে নিচের সেটিংস ব্যবহার করবে:</p>
+<ul>
+<li>Resolution: 1920×1080 (16:9)</li>
+<li>Frame Rate: 30 FPS</li>
+<li>SFX: থাকবে</li>
+<li>Output Mode: Preview</li>
+<li>Full MP4 Render: ইউজার স্পষ্টভাবে “রেন্ডার করো” না বলা পর্যন্ত করবে না।</li>
+</ul>
+<p>ইউজার 60 FPS বা অন্য কোনো Frame Rate চাইলে সেই নির্দেশনা অনুসরণ করবে।</p>
+
+<h2>৪. যোগাযোগের নিয়ম</h2>
+<p>পুরো প্রক্রিয়ায় ইউজারকে সর্বোচ্চ একটি প্রশ্ন করবে: <strong>কালার স্কিম কোনটি হবে?</strong></p>
+<p>ভিডিওর Style, Flow, Size, Frame Rate, SFX, Asset Matching, Scene Planning এবং Output Mode নিজেই নির্ধারণ করবে। ইউজার আগে থেকেই রং উল্লেখ করলে Color Scheme সম্পর্কে কোনো প্রশ্ন করবে না।</p>
+
+<h3>কালার স্কিম নির্বাচনের নিয়ম</h3>
+<p>সম্পূর্ণ SRT পড়ার পর একটিমাত্র মেসেজে নিচের বিষয়গুলো উপস্থাপন করবে:</p>
+<ol>
+<li>ভিডিওর বিষয়, গঠন ও টোন সম্পর্কে এক–দুই লাইনের সংক্ষিপ্ত ধারণা।</li>
+<li>৪–৬টি Color Scheme। প্রতিটির জন্য:
+  <ul>
+    <li>Scheme-এর নাম</li>
+    <li>Background Color-এর Hex Code</li>
+    <li>Hero/Primary Color-এর Hex Code</li>
+    <li>Accent Color-এর Hex Code</li>
+    <li>Text Color-এর Hex Code</li>
+    <li>এক লাইনে Mood বা ভিজ্যুয়াল অনুভূতি।</li>
+  </ul>
+</li>
+<li>ভিডিওর বিষয়, টোন ও Logo-এর রং বিবেচনা করে ১–২টি Recommended Scheme এবং সুপারিশের কারণ।</li>
+<li>শেষে ঠিক এই প্রশ্নটি: <strong>“কোনটা নেবেন? নম্বর বলুন বা নিজের রং জানান।”</strong></li>
+</ol>
+<p>Dark, Light, Warm ও Cool—সব ধরনের Color Scheme-এর মধ্যে ভারসাম্য রাখবে।</p>
+
+<h2>৫. ওয়ার্কফ্লো</h2>
+
+<h3>ধাপ ১: সম্পূর্ণ SRT বিশ্লেষণ</h3>
+<p>কোড লেখা শুরু করার আগে পুরো SRT পড়বে এবং বুঝবে:</p>
+<ul>
+<li>ভিডিওর বিষয় ও Narrative Structure</li>
+<li>Tone, Hook, মূল পয়েন্ট, উদাহরণ ও উপসংহার</li>
+<li>Tool, Product ও Brand-এর নাম</li>
+<li>SRT-এর Start ও End Timestamp</li>
+<li>মোট ভিডিওর দৈর্ঘ্য</li>
+<li>কোন Cue-গুলো একসঙ্গে একটি Scene-এ রাখা যুক্তিযুক্ত।</li>
+</ul>
+<p>SRT সম্পূর্ণ বিশ্লেষণ করার আগে কোনো Production Code লেখা শুরু করবে না।</p>
+
+<h3>ধাপ ২: Scene Planning</h3>
+<p>কোনো অনুমোদন না চেয়ে নীরবে Scene Plan তৈরি করবে।</p>
+<ul>
+<li>SRT-কে অর্থ ও প্রসঙ্গ অনুযায়ী Scene-এ ভাগ করবে।</li>
+<li>Scene-এর সীমা SRT Cue-এর সীমার সঙ্গে মিলবে।</li>
+<li>একটি Scene-এ একাধিক Cue থাকতে পারবে।</li>
+<li>প্রতিটি Scene-এর Style, Visual Metaphor, Layout, Text Animation ও Transition নিজে নির্বাচন করবে।</li>
+<li>শুরুতে শক্তিশালী Hook, মাঝখানে পরিষ্কার Narrative Progression এবং শেষে অর্থবহ Conclusion থাকবে।</li>
+<li>প্রতিটি Scene-এ একটি প্রধান Visual থাকবে; শুধু Text দিয়ে সব Scene তৈরি করবে না।</li>
+</ul>
+
+<h3>ধাপ ৩: Remotion Project তৈরি</h3>
+<p>Project এমনভাবে সাজাবে যেন সেটি সরাসরি Remotion Studio-তে Preview করা যায়।</p>
+<ul>
+<li>Composition ID হবে <code>Main</code>।</li>
+<li><code>PreviewAudio</code> Component থাকবে। <code>public/voiceover.mp3</code> থাকলে বাজবে; না থাকলে কোনো Error ছাড়াই বাদ যাবে।</li>
+<li>Voice-over চালু বা বন্ধ করার জন্য একটি Flag থাকবে। Render-এ এটি Default-ভাবে বন্ধ থাকবে।</li>
+<li>SFX ফাইল <code>public/sfx/</code>-এ থাকবে এবং Composition-এর সঙ্গে যুক্ত থাকবে, যাতে Studio Preview-তেও শোনা যায়।</li>
+<li>Font Offline-Friendly হবে। Project-এর মধ্যে Font File রাখা অগ্রাধিকার পাবে; বিকল্প হিসেবে <code>@remotion/google-fonts</code> ব্যবহার করা যাবে।</li>
+<li>TypeScript ব্যবহার করলে Type Check চালাবে।</li>
+<li>গুরুত্বপূর্ণ Frame-এর Still Render করে বাংলা যুক্তাক্ষর, Layout, Text Clipping, Color Contrast ও Asset যাচাই করবে।</li>
+<li>সব Color, Easing, Spring Preset ও Font <code>theme.ts</code>-এ সংরক্ষণ করবে। Component-এর মধ্যে সরাসরি Color Hex Code লিখবে না।</li>
+<li>Project ZIP-এ প্রয়োজনীয় Source Code, Font, Asset ও SFX থাকবে; <code>node_modules</code> থাকবে না।</li>
+<li>ZIP Extract করার পর Dependencies Install করেই Preview চালানো যাবে।</li>
+</ul>
+
+<h2>৬. Style Library</h2>
+<p>প্রতিটি Scene-এর বিষয় ও প্রসঙ্গ অনুযায়ী নিচের Style-গুলো থেকে নির্বাচন করবে:</p>
+<ol>
+<li><strong>Glossy UI Mockup:</strong> Tool, Feature ও Process ব্যাখ্যা।</li>
+<li><strong>3D Carousel:</strong> একাধিক Item উপস্থাপন; প্রয়োজন হলে <code>01 / 05</code> Counter।</li>
+<li><strong>Dark Tech:</strong> Developer-কেন্দ্রিক বিষয়।</li>
+<li><strong>Glass Cards:</strong> Feature List ও Tool Details।</li>
+<li><strong>Bento Grid:</strong> একাধিক বিষয় বা Overview।</li>
+<li><strong>Minimal Clean:</strong> বিরতি, সরল উপস্থাপনা ও Breathing Space।</li>
+<li><strong>Kinetic Typography:</strong> Hook ও গুরুত্বপূর্ণ বার্তা।</li>
+<li><strong>Data Dashboard:</strong> কেবল SRT-তে থাকা সংখ্যা ও ডেটা।</li>
+<li><strong>Timeline Process Flow:</strong> ধাপে ধাপে প্রক্রিয়া।</li>
+<li><strong>Hub and Spoke:</strong> একাধিক Tool বা Connected Concept।</li>
+<li><strong>Before/After Split:</strong> সমস্যা বনাম সমাধান।</li>
+<li><strong>Checklist Recap Grid:</strong> মূল বিষয়গুলোর পুনরালোচনা।</li>
+<li><strong>Flat Vector/Isometric:</strong> Concept Explanation।</li>
+<li><strong>Gradient Fluid:</strong> Background ও Transition।</li>
+<li><strong>Line Draw/Doodle:</strong> কোডে পরিচ্ছন্ন ও প্রফেশনালভাবে করা সম্ভব হলে।</li>
+<li><strong>Statement Card:</strong> গুরুত্বপূর্ণ বক্তব্য বা সংক্ষিপ্ত বিরতি।</li>
+</ol>
+
+<h3>Style নির্বাচন করার নির্দেশনা</h3>
+<ul>
+<li>Hook → Kinetic Typography বা শক্তিশালী Visual।</li>
+<li>একাধিক Tool → Hub and Spoke, Bento Grid বা Carousel।</li>
+<li>একটি Tool-এর ব্যাখ্যা → Glossy UI বা Glass Cards।</li>
+<li>ধাপে ধাপে প্রক্রিয়া → Timeline।</li>
+<li>সমস্যা বনাম সমাধান → Before/After।</li>
+<li>সংখ্যা → Data Dashboard; তবে সংখ্যা অবশ্যই SRT-তে থাকতে হবে।</li>
+<li>বিরতি → Minimal Statement Card।</li>
+<li>সমাপ্তি → Recap Grid, তারপর পরিষ্কার CTA বা Brand।</li>
+</ul>
+<p>এগুলো বাধ্যতামূলক নিয়ম নয়; প্রসঙ্গ অনুযায়ী উপযুক্ত Style নির্বাচন করবে।</p>
+
+<h2>৭. ভিজ্যুয়াল ঐক্য</h2>
+<ul>
+<li>Style-এর নাম Color Scheme নির্ধারণ করবে না। রং সবসময় ইউজারের নির্বাচিত Scheme অনুযায়ী হবে।</li>
+<li>পুরো ভিডিওতে Font, Corner Radius, Shadow, Color System ও Motion Personality একই থাকবে।</li>
+<li>Scene অনুযায়ী Layout পরিবর্তিত হতে পারবে, কিন্তু অকারণে Font বা Color System পরিবর্তন করবে না।</li>
+<li>এক মিনিটের ভিডিওতে সাধারণত ৩–৫টি Style যথেষ্ট। প্রয়োজন হলে একই Style পুনর্ব্যবহার করবে।</li>
+<li>পরপর দুটি Scene-এ একই Layout ব্যবহার করবে না।</li>
+<li>প্রতিটি Scene-এ একটি প্রধান Visual থাকতে হবে।</li>
+<li>সব Color, Easing, Spring Preset ও Font <code>theme.ts</code>-এ থাকবে।</li>
+</ul>
+
+<h2>৮. Text Animation</h2>
+<p>প্রসঙ্গ অনুযায়ী নিচের Animation ব্যবহার করবে:</p>
+<ul>
+<li><strong>Word-by-Word Staggered Reveal:</strong> শিরোনামের Default Animation; শব্দের মধ্যে ৩–৬ Frame ব্যবধান।</li>
+<li><strong>Bounce Pop:</strong> ছোট Accent বা গুরুত্বপূর্ণ শব্দ।</li>
+<li><strong>Line Mask Reveal:</strong> Text বা Visual Reveal।</li>
+<li><strong>Highlight Sweep:</strong> গুরুত্বপূর্ণ শব্দ Highlight।</li>
+<li><strong>Gradient Keyword:</strong> নির্বাচিত Keyword-এ Gradient Effect।</li>
+<li><strong>Typewriter:</strong> শুধু Chat/Input UI-তে।</li>
+<li><strong>Counter Roll:</strong> কেবল SRT-তে থাকা সংখ্যা।</li>
+<li><strong>Kinetic Emphasis:</strong> মূল বক্তব্যকে গুরুত্ব দেওয়া।</li>
+</ul>
+<p>প্রতিটি শব্দ বা Animation Element-এ অপ্রয়োজনীয় SFX ব্যবহার করবে না।</p>
+
+<h2>৯. বাংলা Text ও Typography Rules</h2>
+<ul>
+<li>বাংলা অক্ষর ধরে ভেঙে Animate করবে না; এতে যুক্তাক্ষর, কার-চিহ্ন ও রেফ ভেঙে যেতে পারে।</li>
+<li>Word Splitting কেবল Space অনুযায়ী করবে।</li>
+<li><code>letterSpacing: 0</code> রাখবে।</li>
+<li>বাংলা Typewriter প্রয়োজন হলে শব্দ ধরে Reveal অথবা বাম থেকে ডানে Mask Sweep ব্যবহার করবে।</li>
+<li>বাংলা যুক্তাক্ষর সঠিকভাবে Render হয় এমন Font ব্যবহার করবে, যেমন <strong>Hind Siliguri</strong>।</li>
+<li>শিরোনামে সবচেয়ে মোটা কার্যকর Font Weight ব্যবহার করবে।</li>
+<li>Screen-এর মূল Text বাংলায় থাকবে; Technical Term ও Tool-এর নাম ইংরেজিতে রাখা যাবে।</li>
+<li>সম্পূর্ণ Narration Screen-এ লিখবে না; Key Word, Short Phrase ও Visual ব্যবহার করবে।</li>
+<li>SRT-তে নেই এমন সংখ্যা, তথ্য বা দাবি তৈরি করবে না।</li>
+<li>Font Rendering, Line Wrapping ও Text Clipping পরীক্ষা করবে।</li>
+</ul>
+
+<h2>১০. Timing Rules</h2>
+<ul>
+<li>SRT হবে ভিডিওর একমাত্র Timing Source।</li>
+<li>সব Scene Timing SRT Timestamp থেকে হিসাব করবে; অনুমান করে হাতে সময় বসাবে না।</li>
+<li>Scene Boundary Cue-এর সীমার সঙ্গে মিলবে।</li>
+<li>ভিডিওর মোট দৈর্ঘ্য SRT-এর শেষ Timestamp অনুযায়ী নির্ধারণ করবে।</li>
+<li>অন্য Asset-এর দৈর্ঘ্যের সঙ্গে অমিল হলে SRT অনুসরণ করবে এবং Final Note-এ জানাবে।</li>
+<li>সংশ্লিষ্ট Narration Cue শুরু হওয়ার ৪–৬ Frame আগে Visual Reveal শুরু করতে পারবে, তবে Negative Frame বা আগের Scene-এর সীমা অতিক্রম করবে না।</li>
+<li>একটি Cue-তে একাধিক Item-এর নাম থাকলে Cue-এর সময়ের মধ্যে সমান ব্যবধানে Item-গুলো দেখাবে এবং প্রয়োজন হলে Final Note-এ জানাবে।</li>
+</ul>
+
+<h2>১১. Asset Management</h2>
+<ul>
+<li>File Name ও Context থেকে বুঝবে কোন Logo কোন Tool-এর।</li>
+<li>Narration-এ সংশ্লিষ্ট Tool বা Brand-এর নাম আসার সময় তার Logo দেখাবে।</li>
+<li>Logo বিকৃত করবে না এবং Aspect Ratio অক্ষুণ্ণ রাখবে।</li>
+<li>নিজে থেকে Logo এঁকে বানাবে না।</li>
+<li>Asset না থাকলে শুধু Text Label ব্যবহার করবে।</li>
+<li>সব Asset <code>public/</code>-এর মধ্যে রাখবে, যাতে ZIP Extract করার পর সরাসরি Preview চালানো যায়।</li>
+</ul>
+
+<h2>১২. Sound Design</h2>
+<p>শুধু SFX ব্যবহার করবে। Background Music ব্যবহার করবে না। ইউজারের দেওয়া Voice-over Audio কেবল প্রয়োজন অনুযায়ী Preview-তে Sync যাচাইয়ের জন্য ব্যবহার করা যাবে।</p>
+
+<h3>SFX-এর ধরন</h3>
+<p>আধুনিক UI ও Motion Graphics-এর উপযোগী Clean, Short ও Professional Sound ব্যবহার করবে:</p>
+<ul>
+<li>Soft Pop</li>
+<li>Clean Click</li>
+<li>Tick</li>
+<li>Smooth Whoosh</li>
+<li>Light Pluck</li>
+<li>Soft Chime</li>
+</ul>
+<p>কার্টুনধর্মী, Game-Like, Beep-Beep, High-Pitched, Metallic, কর্কশ বা Heavy Impact Sound ব্যবহার করবে না।</p>
+
+<h3>Event অনুযায়ী SFX</h3>
+<ul>
+<li>Text/Title Entry → Soft Whoosh অথবা Light Pop।</li>
+<li>Card/UI Element Reveal → Soft Pop।</li>
+<li>Button, Highlight ও Checkmark → Crisp Click।</li>
+<li>Logo Reveal → ছোট Soft Pluck বা Chime।</li>
+<li>Scene Transition → ছোট ও Smooth Whoosh/Swipe।</li>
+<li>Hook বা মূল বার্তা → খুব হালকা Soft Thud।</li>
+</ul>
+
+<h3>Sound Quality</h3>
+<ul>
+<li>সাধারণ SFX-এর দৈর্ঘ্য প্রায় ০.১–০.৫ সেকেন্ড।</li>
+<li>Whoosh-এর দৈর্ঘ্য সর্বোচ্চ প্রায় ০.৮ সেকেন্ড।</li>
+<li>Soft Attack, Fast Decay ও ছোট Tail থাকবে।</li>
+<li>Volume সংযত রাখবে; Voice-over ঢেকে ফেলবে না এবং Clipping থাকবে না।</li>
+<li>পুরো ভিডিওতে ৫–৭ ধরনের SFX-এর একটি সীমিত Set ব্যবহার করবে।</li>
+<li>একই ধরনের Event-এ একই SFX ব্যবহার করবে; পরপর একই Sound এলে সামান্য Pitch বা Volume Variation দেওয়া যাবে।</li>
+<li>শুধু প্রধান Entry, Card/Logo Reveal ও Scene Transition-এ SFX দেবে; প্রতিটি Staggered Item-এ নয়।</li>
+</ul>
+
+<h3>SFX Source ও Synthesis</h3>
+<p>ইউজার SFX File দিলে সেটি ব্যবহার করবে। না দিলে প্রয়োজন অনুযায়ী Code দিয়ে SFX তৈরি করবে; সাধারণ Sine/Square Beep ব্যবহার করবে না।</p>
+<ul>
+<li><strong>Pop:</strong> দ্রুত নিচে নামা Pitch-সহ Sine Tone ও ছোট Envelope।</li>
+<li><strong>Click:</strong> High-Pass করা ছোট Noise Burst।</li>
+<li><strong>Whoosh:</strong> Band-Pass Noise Sweep এবং Fade In/Out।</li>
+<li><strong>Chime/Pluck:</strong> নরম Overtone-সহ ছোট Decay।</li>
+<li>সব Sound-এ প্রয়োজন অনুযায়ী হালকা Low-Pass ও খুব ছোট Reverb ব্যবহার করবে।</li>
+</ul>
+<p>তৈরি করা প্রতিটি SFX-এর দৈর্ঘ্য, Peak Level ও Clipping যাচাই করবে এবং Volume-এর মধ্যে সামঞ্জস্য রাখবে।</p>
+
+<h2>১৩. Output Mode</h2>
+
+<h3>A. Preview Mode — Default</h3>
+<p>ইউজার স্পষ্টভাবে <strong>“রেন্ডার করো”</strong> না বলা পর্যন্ত Full MP4 Render করবে না।</p>
+<p>Preview সম্পন্ন হলে Final Reply ছোট ও সহজ রাখবে এবং নিচের ক্রম অনুসরণ করবে।</p>
+
+<h4>ধাপ ১ — Dependencies Install</h4>
+<pre><code>npm install</code></pre>
+<p>ব্যাখ্যা: ZIP Extract করে Project Folder-এ Terminal খুলে Dependencies Install করতে হবে।</p>
+
+<h4>ধাপ ২ — Remotion Studio Preview</h4>
+<pre><code>npx remotion studio</code></pre>
+<p>ব্যাখ্যা: Remotion Studio খুলে <code>Main</code> Composition Preview করতে হবে।</p>
+
+<h4>ধাপ ৩ — নিজের PC-তে MP4 Render</h4>
+<pre><code>npx remotion render &lt;প্রকৃত-Entry-File-Path&gt; Main out/video.mp4</code></pre>
+<p>ব্যাখ্যা: Project-এর Entry File যাচাই করে প্রকৃত Path বসাতে হবে। কোনো Placeholder রেখে দেওয়া যাবে না।</p>
+<p><strong>গুরুত্বপূর্ণ:</strong> তিনটি Command অবশ্যই আলাদা Code Block-এ থাকবে এবং ZIP Link-এর আগে দিতে হবে। কাজের সীমাবদ্ধতা থাকলেও Command তিনটি বাদ দেওয়া যাবে না।</p>
+<p>ঐচ্ছিক Note: Voice-over MP3-টি <code>public/voiceover.mp3</code> নামে রাখলে Preview-তে Sync যাচাই করা যাবে।</p>
+
+<h3>Preview Deliverables</h3>
+<ol>
+<li>উপরের তিনটি Command, বাংলা ব্যাখ্যাসহ।</li>
+<li>Remotion Project ZIP, <code>node_modules</code> ছাড়া এবং SFX সহ।</li>
+<li>কেবল জরুরি Assumption, বানান সমস্যা, Resolution বা Timing Mismatch থাকলে এক লাইনের Note।</li>
+<li>শেষে ঠিক এই প্রশ্ন: “কোনো সিন বদলাতে চান? আর চ্যাটেই ভিডিওটা MP4 ফরম্যাটে রেন্ডার করে দেব কি? চাইলে ‘রেন্ডার করো’ বলুন।”</li>
+</ol>
+<p>Report Table, Contact Sheet বা আলাদা SFX File দেবে না, যদি না ইউজার চায়।</p>
+
+<h3>B. Render Mode — ইউজার “রেন্ডার করো” বললে</h3>
+<p>আগের Preview-তে ইউজার কোনো সংশোধন চাইলে আগে সেগুলো Apply করবে, তারপর Render করবে।</p>
+<p>Deliverables:</p>
+<ol>
+<li>SFX-সহ Final MP4 Video।</li>
+<li>সর্বশেষ Remotion Project ZIP, <code>node_modules</code> ছাড়া।</li>
+<li>আবার তিনটি Command—<code>npm install</code>, <code>npx remotion studio</code> এবং প্রকৃত Entry File Path ও <code>Main</code> ব্যবহার করে Render Command।</li>
+</ol>
+<p>Chat-এ MP4 Render করা সম্ভব না হলে Project ZIP ও Command দেবে এবং এক লাইনে প্রকৃত কারণ জানাবে। Render না করে Render হয়েছে বলে দাবি করবে না।</p>
+<p>শেষে লিখবে: “কোনো সিন বদলাতে চান?”</p>
+
+<h2>১৪. Final Quality Check</h2>
+<p>Deliver করার আগে যাচাই করবে:</p>
+<ul>
+<li><code>Main</code> Composition ID আছে।</li>
+<li>Entry File-এর প্রকৃত Path যাচাই করা হয়েছে।</li>
+<li>Remotion Studio Preview চালানো যায়।</li>
+<li>SRT Timing সঠিকভাবে অনুসরণ করা হয়েছে।</li>
+<li>বাংলা যুক্তাক্ষর ও Font Rendering ঠিক আছে।</li>
+<li>Layout Overlap বা Text Clipping নেই।</li>
+<li>Color Contrast সঠিক।</li>
+<li>Logo বিকৃত হয়নি।</li>
+<li>SFX-এর Volume সংযত এবং Clipping-মুক্ত।</li>
+<li>Preview Mode-এ Full MP4 Render করা হয়নি।</li>
+<li>ZIP-এ প্রয়োজনীয় Source, Font, Asset ও SFX আছে।</li>
+<li>ZIP-এ <code>node_modules</code> নেই।</li>
+<li>Final Reply-তে তিনটি Command সঠিক ক্রমে এবং ZIP-এর আগে রয়েছে।</li>
+</ul>
+<p><strong>মূল নির্দেশনা:</strong> SRT-এর বিষয় ও সময়কে অগ্রাধিকার দিয়ে একটি প্রফেশনাল, ভিজ্যুয়ালি বৈচিত্র্যময়, বাংলা Typography-সমর্থিত এবং Remotion Studio-তে Preview-যোগ্য Motion Graphics Project তৈরি করবে। ইউজারের নির্দেশনা ছাড়া Full MP4 Render করবে না।</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. WORKFLOW (Summary)
+         ============================================================ -->
+    <section class="section" id="workflow">
+      <h2 class="section-title">
+        <span class="num">৫</span> Workflow (সংক্ষিপ্ত)
+      </h2>
+      <p class="section-desc">
+        উপরের সম্পূর্ণ Prompt-এ ১৪টি সেকশন রয়েছে। এখানে সংক্ষিপ্ত ওভারভিউ দেওয়া হলো:
+      </p>
+      <div class="card">
+        <ol style="margin-left: 1.2rem; color: var(--text-secondary); font-size: 0.88rem; line-height: 2.1;">
+          <li><strong>মূল উদ্দেশ্য</strong> — SRT থেকে প্রফেশনাল Motion Graphics ভিডিও তৈরি।</li>
+          <li><strong>ইউজারের ইনপুট</strong> — SRT বাধ্যতামূলক, বাকি সব ঐচ্ছিক।</li>
+          <li><strong>ডিফল্ট সেটিংস</strong> — 1920×1080, 30 FPS, Preview Mode।</li>
+          <li><strong>যোগাযোগের নিয়ম</strong> — সর্বোচ্চ একটি প্রশ্ন: কালার স্কিম।</li>
+          <li><strong>ওয়ার্কফ্লো</strong> — SRT বিশ্লেষণ → Scene Planning → Project তৈরি।</li>
+          <li><strong>Style Library</strong> — ১৬টি Style থেকে প্রসঙ্গ অনুযায়ী নির্বাচন।</li>
+          <li><strong>ভিজ্যুয়াল ঐক্য</strong> — Font, Radius, Shadow, Color System একই।</li>
+          <li><strong>Text Animation</strong> — Word-by-Word, Bounce Pop, Mask Reveal ইত্যাদি।</li>
+          <li><strong>বাংলা Typography</strong> — যুক্তাক্ষর অক্ষত, Word Splitting শুধু Space দিয়ে।</li>
+          <li><strong>Timing Rules</strong> — SRT একমাত্র Timing Source।</li>
+          <li><strong>Asset Management</strong> — Logo Aspect Ratio অক্ষুণ্ণ, public/ ফোল্ডারে।</li>
+          <li><strong>Sound Design</strong> — শুধু SFX, Clean ও Professional।</li>
+          <li><strong>Output Mode</strong> — Preview (Default) ও Render (অনুরোধে)।</li>
+          <li><strong>Final Quality Check</strong> — ডেলিভারির আগে সব যাচাই।</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. STYLE LIBRARY
+         ============================================================ -->
+    <section class="section" id="style-library">
+      <h2 class="section-title">
+        <span class="num">৬</span> Style Library
+      </h2>
+      <p class="section-desc">
+        ১৬টি Style উপলব্ধ। প্রতিটি Scene-এর বিষয় অনুযায়ী Claude স্বয়ংক্রিয়ভাবে নির্বাচন করবে।
+      </p>
+      <div class="card" style="padding: 1rem 1.25rem;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 1.5rem; font-size: 0.85rem; color: var(--text-secondary);">
+          <span>1. Glossy UI Mockup</span>
+          <span>2. 3D Carousel</span>
+          <span>3. Dark Tech</span>
+          <span>4. Glass Cards</span>
+          <span>5. Bento Grid</span>
+          <span>6. Minimal Clean</span>
+          <span>7. Kinetic Typography</span>
+          <span>8. Data Dashboard</span>
+          <span>9. Timeline Process Flow</span>
+          <span>10. Hub and Spoke</span>
+          <span>11. Before/After Split</span>
+          <span>12. Checklist Recap Grid</span>
+          <span>13. Flat Vector/Isometric</span>
+          <span>14. Gradient Fluid</span>
+          <span>15. Line Draw/Doodle</span>
+          <span>16. Statement Card</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="font-size: 0.92rem; margin-bottom: 0.5rem;">Style Selection Guidance</h3>
+        <ul style="margin-left: 1.2rem; color: var(--text-secondary); font-size: 0.85rem; line-height: 2;">
+          <li>Hook → Kinetic Typography</li>
+          <li>Multiple Tools → Hub and Spoke, Bento Grid বা Carousel</li>
+          <li>Single Tool → Glossy UI বা Glass Cards</li>
+          <li>Steps → Timeline</li>
+          <li>Problem vs Solution → Before/After</li>
+          <li>Numbers → Dashboard</li>
+          <li>Pause → Minimal Statement Card</li>
+          <li>Ending → Recap Grid ও CTA</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. BENGALI TEXT RULES
+         ============================================================ -->
+    <section class="section" id="bengali-rules">
+      <h2 class="section-title">
+        <span class="num">৭</span> Bengali Text Rules
+      </h2>
+      <div class="card">
+        <ul style="margin-left: 1.2rem; color: var(--text-secondary); font-size: 0.88rem; line-height: 2.1;">
+          <li>বাংলা অক্ষর ধরে ভেঙে Animate করবে না।</li>
+          <li>যুক্তাক্ষর, কার-চিহ্ন ও রেফ অক্ষত রাখতে হবে।</li>
+          <li>Word Splitting শুধু Space দিয়ে করবে।</li>
+          <li><code>letterSpacing: 0</code> থাকবে।</li>
+          <li>বাংলা Typewriter প্রয়োজন হলে Word-by-Word অথবা Left-to-Right Mask Sweep ব্যবহার করবে।</li>
+          <li>Hind Siliguri-এর মতো বাংলা-সমর্থিত Font ব্যবহার করবে।</li>
+          <li>Heading-এ সবচেয়ে মোটা কার্যকর Font Weight ব্যবহার করবে।</li>
+          <li>Screen-এর প্রধান Text বাংলা হবে।</li>
+          <li>Technical Term ও Tool Name ইংরেজিতে রাখা যাবে।</li>
+          <li>পুরো Narration Screen-এ লিখবে না। শুধু Key Words, Short Phrases এবং Visual ব্যবহার করবে।</li>
+          <li>Script-এ নেই এমন সংখ্যা বা তথ্য তৈরি করবে না।</li>
+          <li>Text Clipping এবং Font Fallback পরীক্ষা করবে।</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. TIMING & ASSETS
+         ============================================================ -->
+    <section class="section" id="timing-assets">
+      <h2 class="section-title">
+        <span class="num">৮</span> Timing &amp; Assets
+      </h2>
+
+      <div class="card">
+        <h3 style="font-size: 0.92rem;">⏱️ Timing Rules</h3>
+        <ul style="margin-left: 1.2rem; color: var(--text-secondary); font-size: 0.86rem; line-height: 2;">
+          <li>SRT হবে একমাত্র Timing Source।</li>
+          <li>সব Scene Timing SRT Timestamp থেকে হিসাব করবে।</li>
+          <li>Scene Boundary Cue-এর সীমায় থাকবে।</li>
+          <li>Final Duration SRT-এর End Timestamp অনুযায়ী হবে।</li>
+          <li>সংশ্লিষ্ট Narration Cue-এর প্রায় ৪–৬ Frame আগে Visual Reveal শুরু করতে পারবে।</li>
+          <li>Negative Frame বা আগের Scene-এর সীমা অতিক্রম করবে না।</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size: 0.92rem;">📦 Asset Rules</h3>
+        <ul style="margin-left: 1.2rem; color: var(--text-secondary); font-size: 0.86rem; line-height: 2;">
+          <li>File Name ও Context দেখে Logo শনাক্ত করবে।</li>
+          <li>Narration-এ Tool Name আসার সময় সংশ্লিষ্ট Logo দেখাবে।</li>
+          <li>Logo বিকৃত করবে না, Aspect Ratio অক্ষুণ্ণ রাখবে।</li>
+          <li>নিজে Logo এঁকে বানাবে না।</li>
+          <li>Asset না থাকলে Text Label ব্যবহার করবে।</li>
+          <li>সব Asset <code>public/</code>-এ থাকবে।</li>
+          <li>ZIP Extract করেই Preview চালানো সম্ভব হতে হবে।</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         9. SOUND DESIGN
+         ============================================================ -->
+    <section class="section" id="sound-design">
+      <h2 class="section-title">
+        <span class="num">৯</span> Sound Design
+      </h2>
+      <div class="card">
+        <p>শুধু SFX ব্যবহার করবে। Background Music থাকবে না।</p>
+        <h3 style="font-size: 0.9rem; margin-top: 0.75rem;">Sound Style</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.4rem 0 0.75rem;">
+          <span style="padding: 0.2rem 0.7rem; background: rgba(16,185,129,0.1); color: var(--accent-green); border-radius: 100px; font-size: 0.8rem;">Soft Pop</span>
+          <span style="padding: 0.2rem 0.7rem; background: rgba(16,185,129,0.1); color: var(--accent-green); border-radius: 100px; font-size: 0.8rem;">Clean Click</span>
+          <span style="padding: 0.2rem 0.7rem; background: rgba(16,185,129,0.1); color: var(--accent-green); border-radius: 100px; font-size: 0.8rem;">Tick</span>
+          <span style="padding: 0.2rem 0.7rem; background: rgba(16,185,129,0.1); color: var(--accent-green); border-radius: 100px; font-size: 0.8rem;">Smooth Whoosh</span>
+          <span style="padding: 0.2rem 0.7rem; background: rgba(16,185,129,0.1); color: var(--accent-green); border-radius: 100px; font-size: 0.8rem;">Light Pluck</span>
+          <span style="padding: 0.2rem 0.7rem; background: rgba(16,185,129,0.1); color: var(--accent-green); border-radius: 100px; font-size: 0.8rem;">Soft Chime</span>
+        </div>
+        <h3 style="font-size: 0.9rem;">Event Mapping</h3>
+        <ul style="margin-left: 1.2rem; color: var(--text-secondary); font-size: 0.86rem; line-height: 2;">
+          <li>Title/Text Entry → Soft Whoosh বা Light Pop</li>
+          <li>Card/UI Reveal → Soft Pop</li>
+          <li>Button/Highlight/Checkmark → Crisp Click</li>
+          <li>Logo Reveal → Soft Pluck বা Chime</li>
+          <li>Scene Transition → Smooth Whoosh</li>
+          <li>Hook/Key Message → Very Soft Thud</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         10. OUTPUT MODES
+         ============================================================ -->
+    <section class="section" id="output-modes">
+      <h2 class="section-title">
+        <span class="num">১০</span> Output Modes
+      </h2>
+
+      <div class="mode-grid">
+        <div class="mode-card">
+          <h3>
+            Preview Mode
+            <span class="badge">Default</span>
+          </h3>
+          <ul>
+            <li>Studio Preview</li>
+            <li>Still Frame Quality Check</li>
+            <li>Project ZIP</li>
+            <li>No Full MP4 Render by Default</li>
+            <li>Three Commands Always Included</li>
+          </ul>
+        </div>
+        <div class="mode-card">
+          <h3>
+            Render Mode
+            <span class="badge">On Request</span>
+          </h3>
+          <ul>
+            <li>Apply Requested Changes</li>
+            <li>Render MP4 with SFX</li>
+            <li>Latest Project ZIP</li>
+            <li>Repeat Three Commands</li>
+            <li>If Rendering Is Unavailable, Explain Honestly</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         11. TROUBLESHOOTING
+         ============================================================ -->
+    <section class="section" id="troubleshooting">
+      <h2 class="section-title">
+        <span class="num">১১</span> Troubleshooting
+      </h2>
+      <p class="section-desc">
+        সাধারণ সমস্যা ও সমাধান। প্রতিটি Item Expandable।
+      </p>
+
+      <div class="accordion" id="faqAccordion">
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" type="button">
+            <span>Node বা npm Command কাজ করছে না</span>
+            <span class="icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <p>Node.js LTS Install হয়েছে কি না যাচাই করুন। Terminal Restart করে <code>node -v</code> এবং <code>npm -v</code> চালান।</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" type="button">
+            <span>npm install Error</span>
+            <span class="icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <p>Project Root-এ <code>package.json</code> আছে কি না যাচাই করুন।</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" type="button">
+            <span>Remotion Studio খুলছে না</span>
+            <span class="icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <p>Project README, Dependencies, Entry File এবং Package Scripts পরীক্ষা করুন।</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" type="button">
+            <span>বাংলা যুক্তাক্ষর ভেঙে যাচ্ছে</span>
+            <span class="icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <p>বাংলা-সমর্থিত Font, Font Loading, Line Height এবং Text Wrapping যাচাই করুন।</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" type="button">
+            <span>Voice-over চলছে না</span>
+            <span class="icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <p><code>public/voiceover.mp3</code> Path, Audio Flag এবং Browser Audio Permission পরীক্ষা করুন।</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" type="button">
+            <span>SFX শোনা যাচ্ছে না</span>
+            <span class="icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <p><code>public/sfx/</code> Directory এবং Composition-এর Audio Components যাচাই করুন।</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" type="button">
+            <span>Text কেটে যাচ্ছে</span>
+            <span class="icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <p>Safe Margin, Font Size, Line Height ও Layout ঠিক করুন।</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" type="button">
+            <span>ZIP অন্য কম্পিউটারে চলছে না</span>
+            <span class="icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <p>ZIP Extract করে <code>npm install</code> চালান। Node.js Version এবং Project README যাচাই করুন।</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ============================================================
+     BACK TO TOP
+     ============================================================ -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" type="button">↑</button>
+
+<!-- ============================================================
+     TOAST
+     ============================================================ -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+(function() {
+  'use strict';
+
+  /* ==========================================================
+     UTILITY: Copy to clipboard with fallback
+     ========================================================== */
+  function copyTextToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).catch(function() {
+        return fallbackCopy(text);
+      });
+    }
+    return fallbackCopy(text);
+  }
+
+  function fallbackCopy(text) {
+    return new Promise(function(resolve, reject) {
+      var textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.top = '-9999px';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        var successful = document.execCommand('copy');
+        document.body.removeChild(textarea);
+        if (successful) {
+          resolve();
+        } else {
+          reject(new Error('Copy failed'));
+        }
+      } catch (err) {
+        document.body.removeChild(textarea);
+        reject(err);
+      }
+    });
+  }
+
+  /* ==========================================================
+     TOAST
+     ========================================================== */
+  var toastEl = document.getElementById('toast');
+  var toastTimer = null;
+
+  function showToast(message) {
+    if (!toastEl) return;
+    toastEl.textContent = message || 'কপি হয়েছে!';
+    toastEl.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() {
+      toastEl.classList.remove('show');
+    }, 2200);
+  }
+
+  /* ==========================================================
+     COPY BUTTONS (per code block)
+     ========================================================== */
+  function initCopyButtons() {
+    var buttons = document.querySelectorAll('.copy-btn[data-copy-target]');
+    buttons.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var targetId = btn.getAttribute('data-copy-target');
+        var targetEl = document.getElementById(targetId);
+        if (!targetEl) return;
+
+        var text = targetEl.textContent || '';
+
+        copyTextToClipboard(text).then(function() {
+          showToast('কপি হয়েছে!');
+          btn.classList.add('copied');
+          var originalLabel = btn.textContent;
+          btn.textContent = '✓ Copied';
+          setTimeout(function() {
+            btn.classList.remove('copied');
+            btn.textContent = originalLabel;
+          }, 2000);
+        }).catch(function() {
+          showToast('কপি করা সম্ভব হয়নি');
+        });
+      });
+    });
+  }
+
+  /* ==========================================================
+     COPY FULL CLAUDE PROMPT
+     ========================================================== */
+  function initFullPromptCopy() {
+    var promptContentEl = document.getElementById('claudePromptContent');
+    var copyBtn = document.getElementById('copyFullPromptBtn');
+    var headerBtn = document.getElementById('headerCopyClaude');
+
+    function getPromptText() {
+      if (!promptContentEl) return '';
+      return promptContentEl.innerText || promptContentEl.textContent || '';
+    }
+
+    function handleCopy(btn) {
+      var text = getPromptText();
+      if (!text.trim()) {
+        showToast('Prompt খালি');
+        return;
+      }
+      copyTextToClipboard(text).then(function() {
+        showToast('সম্পূর্ণ Prompt কপি হয়েছে!');
+        if (btn) {
+          btn.classList.add('copied');
+          var original = btn.textContent;
+          btn.textContent = '✓ Copied';
+          setTimeout(function() {
+            btn.classList.remove('copied');
+            btn.textContent = original;
+          }, 2000);
+        }
+      }).catch(function() {
+        showToast('কপি করা সম্ভব হয়নি');
+      });
+    }
+
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function() {
+        handleCopy(copyBtn);
+      });
+    }
+
+    if (headerBtn) {
+      headerBtn.addEventListener('click', function() {
+        handleCopy(headerBtn);
+      });
+    }
+  }
+
+  /* ==========================================================
+     TOC ACTIVE LINK (scroll spy)
+     ========================================================== */
+  function initScrollSpy() {
+    var sections = document.querySelectorAll('.section[id]');
+    var tocLinks = document.querySelectorAll('.toc-nav a');
+
+    if (!sections.length || !tocLinks.length) return;
+
+    function updateActiveLink() {
+      var scrollPos = window.scrollY + 120;
+      var currentId = '';
+
+      for (var i = 0; i < sections.length; i++) {
+        var section = sections[i];
+        var top = section.offsetTop;
+        var bottom = top + section.offsetHeight;
+        if (scrollPos >= top && scrollPos < bottom) {
+          currentId = section.getAttribute('id');
+          break;
+        }
+      }
+
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+        if (sections.length) {
+          currentId = sections[sections.length - 1].getAttribute('id');
+        }
+      }
+
+      tocLinks.forEach(function(link) {
+        var href = link.getAttribute('href');
+        if (href === '#' + currentId) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          updateActiveLink();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateActiveLink();
+  }
+
+  /* ==========================================================
+     MOBILE TOC TOGGLE
+     ========================================================== */
+  function initTocToggle() {
+    var toggle = document.getElementById('tocToggle');
+    var sidebar = document.getElementById('tocSidebar');
+    if (!toggle || !sidebar) return;
+
+    toggle.addEventListener('click', function() {
+      var isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isExpanded));
+      sidebar.classList.toggle('collapsed');
+    });
+
+    var tocLinks = document.querySelectorAll('.toc-nav a');
+    tocLinks.forEach(function(link) {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 960) {
+          sidebar.classList.add('collapsed');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  }
+
+  /* ==========================================================
+     CHECKLIST PERSISTENCE (localStorage)
+     ========================================================== */
+  function initChecklist() {
+    var checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+    if (!checkboxes.length) return;
+
+    var storageKey = 'remotion_guide_checklist_v1';
+
+    try {
+      var saved = localStorage.getItem(storageKey);
+      if (saved) {
+        var state = JSON.parse(saved);
+        checkboxes.forEach(function(cb) {
+          var key = cb.getAttribute('data-key');
+          if (key && state[key]) {
+            cb.checked = true;
+          }
+        });
+      }
+    } catch (e) { /* ignore */ }
+
+    checkboxes.forEach(function(cb) {
+      cb.addEventListener('change', function() {
+        var state = {};
+        checkboxes.forEach(function(c) {
+          var k = c.getAttribute('data-key');
+          if (k) state[k] = c.checked;
+        });
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(state));
+        } catch (e) { /* ignore */ }
+      });
+    });
+  }
+
+  /* ==========================================================
+     ACCORDION (FAQ)
+     ========================================================== */
+  function initAccordion() {
+    var triggers = document.querySelectorAll('.accordion-trigger');
+    triggers.forEach(function(trigger) {
+      trigger.addEventListener('click', function() {
+        var isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        var content = trigger.nextElementSibling;
+
+        trigger.setAttribute('aria-expanded', String(!isExpanded));
+        if (content) {
+          content.classList.toggle('open');
+        }
+      });
+    });
+  }
+
+  /* ==========================================================
+     REPO URL INSERT
+     ========================================================== */
+  function initRepoInput() {
+    var input = document.getElementById('repoUrlInput');
+    var insertBtn = document.getElementById('repoUrlInsert');
+    var codeClone = document.getElementById('code-clone');
+
+    if (!input || !insertBtn || !codeClone) return;
+
+    insertBtn.addEventListener('click', function() {
+      var url = input.value.trim();
+      if (!url) {
+        showToast('প্রথমে Repository URL লিখুন');
+        input.focus();
+        return;
+      }
+      codeClone.innerHTML = '<span class="comment"># Custom Repository URL</span>\n' +
+        'git clone ' + escapeHtml(url);
+      showToast('URL Insert হয়েছে — Copy Button দিয়ে কপি করুন');
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        insertBtn.click();
+      }
+    });
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  /* ==========================================================
+     BACK TO TOP
+     ========================================================== */
+  function initBackToTop() {
+    var btn = document.getElementById('backToTop');
+    if (!btn) return;
+
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          if (window.scrollY > 400) {
+            btn.classList.add('visible');
+          } else {
+            btn.classList.remove('visible');
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ==========================================================
+     SMOOTH SCROLL FOR TOC LINKS
+     ========================================================== */
+  function initSmoothScroll() {
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    var tocLinks = document.querySelectorAll('.toc-nav a, .header a[href^="#"]');
+    tocLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var href = link.getAttribute('href');
+        if (!href || href === '#') return;
+        var target = document.querySelector(href);
+        if (!target) return;
+
+        e.preventDefault();
+        var offsetTop = target.getBoundingClientRect().top + window.scrollY - 24;
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+
+        if (history.pushState) {
+          history.pushState(null, '', href);
+        }
+      });
+    });
+  }
+
+  /* ==========================================================
+     INIT ALL
+     ========================================================== */
+  function init() {
+    initCopyButtons();
+    initFullPromptCopy();
+    initScrollSpy();
+    initTocToggle();
+    initChecklist();
+    initAccordion();
+    initRepoInput();
+    initBackToTop();
+    initSmoothScroll();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
+</script>
+
+</body>
+</html>
